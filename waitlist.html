@@ -70,6 +70,19 @@
   .brand:hover{ opacity:1; }
   .brand svg{ width:96px; height:auto; }
 
+  .back-link{
+    position:absolute; top: 56px; left: 44px;
+    display:flex; align-items:center; justify-content:center;
+    width:36px; height:36px;
+    color: var(--color-ink);
+    opacity:.7; transition: opacity .2s var(--ease);
+  }
+  .back-link:hover{ opacity:1; }
+  .back-link svg{ width:18px; height:18px; }
+  @media (max-width:560px){
+    .back-link{ top:40px; left:24px; }
+  }
+
   h1{
     font-family: var(--font-serif); font-style:italic; font-weight:500;
     font-size: 28px;
@@ -200,6 +213,11 @@
 <div class="bg-overlay"></div>
 
 <div class="shell" id="shell">
+  <a class="back-link" href="index.html" aria-label="Back to home">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
   <a class="brand" href="index.html" aria-label="1%oM home">
     <svg viewBox="0 0 96 43" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
       <path d="M8.52416 40.6066V40.2067L9.14455 40.1067C9.24461 40.1067 9.30465 40.0467 9.32466 40.0067C9.34468 39.9467 9.36469 39.8667 9.36469 39.7667V36.5869C9.36469 36.4669 9.36469 36.3669 9.32466 36.3069C9.30465 36.2469 9.20459 36.2069 9.0645 36.1869L8.48413 36.1269L8.54417 35.7269L10.1452 35.4669L10.2452 35.5669V39.7867C10.2452 39.9067 10.2452 39.9667 10.2853 40.0267C10.3253 40.0667 10.3853 40.1067 10.4854 40.1267L11.0658 40.2267V40.6266H8.52416V40.6066Z" fill="#9c9686"/>
