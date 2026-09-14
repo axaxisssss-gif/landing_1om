@@ -77,6 +77,8 @@
     text-align:center;
   }
   @media (max-width:560px){ .lede{ font-size:14px; } }
+  .brk-mobile{ display:none; }
+  @media (max-width:560px){ .brk-mobile{ display:block; } }
 
   form{ display:flex; flex-direction:column; gap: 28px; }
 
@@ -233,7 +235,7 @@
     </form>
 
     <p class="fine">
-      By joining, you agree to receive emails from 1%oM.<br>You can unsubscribe anytime.
+      By joining,<br class="brk-mobile"> you agree to receive emails from 1%oM.<br>You can unsubscribe anytime.
     </p>
   </div>
 
