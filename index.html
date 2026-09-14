@@ -845,6 +845,26 @@
 
   if(reduceMotion){ document.querySelectorAll('video').forEach(v => v.pause()); }
 
+  // force-start autoplay videos: some mobile browsers only honor the muted
+  // JS property (not just the HTML attribute) and can otherwise fall back
+  // to showing a native play button instead of autoplaying silently.
+  if(!reduceMotion){
+    const autoplayVideos = document.querySelectorAll('video[autoplay]');
+    autoplayVideos.forEach(v => {
+      v.muted = true;
+      const tryPlay = () => v.play().catch(() => {});
+      tryPlay();
+      v.addEventListener('loadedmetadata', tryPlay);
+      v.addEventListener('canplay', tryPlay);
+    });
+    const resumeVideosOnInteraction = () => {
+      autoplayVideos.forEach(v => v.play().catch(() => {}));
+    };
+    ['touchstart', 'click'].forEach(evt => {
+      window.addEventListener(evt, resumeVideosOnInteraction, { once: true, passive: true });
+    });
+  }
+
   // hero video: swap to a 9:16 mobile cut below 700px, desktop cut above it
   const heroVideo = document.getElementById('heroVideo');
   if(heroVideo){
