@@ -176,6 +176,18 @@
     .wordmark-svg{ width:72px; height:32px; }
     .nav-row .btn-ghost{ padding: 11px 18px; font-size:14px; }
     .nav-row{ padding-top:18px; padding-bottom:18px; }
+
+    /* on load: logo centered, button hidden. once scrolling starts,
+       the logo eases back to the left and the button fades in on the
+       right -- settling into the normal space-between layout. */
+    .wordmark{ transition: transform .45s var(--ease); }
+    .nav-row .btn-ghost{ transition: opacity .35s var(--ease), transform .35s var(--ease); }
+    header:not(.nav-scrolled) .wordmark{
+      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    }
+    header:not(.nav-scrolled) .nav-row .btn-ghost{
+      opacity:0; transform: scale(.92); pointer-events:none;
+    }
   }
 
   /* -------- hero -------- */
@@ -849,6 +861,7 @@
   window.addEventListener('scroll', () => {
     const threshold = heroEl ? heroEl.offsetHeight - 80 : 40;
     header.classList.toggle('scrolled', window.scrollY > threshold);
+    header.classList.toggle('nav-scrolled', window.scrollY > 4);
   });
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
