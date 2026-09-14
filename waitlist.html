@@ -304,6 +304,20 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var LANDING_URL = 'index.html';
 
+  // mobile keyboards resize the viewport and can leave the page scrolled
+  // after they close; snap back to centered once the keyboard is gone.
+  document.querySelectorAll('.field input').forEach(function(input){
+    input.addEventListener('blur', function(){
+      setTimeout(function(){ window.scrollTo(0, 0); }, 100);
+    });
+  });
+  if(window.visualViewport){
+    window.visualViewport.addEventListener('resize', function(){
+      if(document.activeElement && document.activeElement.tagName === 'INPUT') return;
+      window.scrollTo(0, 0);
+    });
+  }
+
   function startRedirectCountdown(){
     var numEl = document.getElementById('countdown-num');
     var n = 3;
