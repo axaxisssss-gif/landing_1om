@@ -178,12 +178,22 @@
     .nav-row{ padding-top:18px; padding-bottom:18px; }
 
     /* on load: logo centered, button hidden. once scrolling starts,
-       the logo eases back to the left and the button fades in on the
-       right -- settling into the normal space-between layout. */
-    .wordmark{ transition: transform .45s var(--ease); }
-    .nav-row .btn-ghost{ transition: opacity .35s var(--ease), transform .35s var(--ease); }
+       the logo glides back to the left and the button fades/grows in
+       on the right -- settling into the normal space-between layout.
+       the wordmark stays position:absolute the whole time (never
+       toggled) so `left`/`transform` can interpolate smoothly instead
+       of snapping when the positioning mode itself would change. */
+    .nav-row{ position:relative; }
+    .wordmark{
+      position:absolute; top:50%; left:0; transform:translateY(-50%);
+      transition: left .5s var(--ease), transform .5s var(--ease);
+    }
+    .nav-row .btn-ghost{
+      margin-left:auto;
+      transition: opacity .5s var(--ease), transform .5s var(--ease);
+    }
     header:not(.nav-scrolled) .wordmark{
-      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+      left:50%; transform:translate(-50%,-50%);
     }
     header:not(.nav-scrolled) .nav-row .btn-ghost{
       opacity:0; transform: scale(.92); pointer-events:none;
