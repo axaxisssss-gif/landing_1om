@@ -212,6 +212,7 @@
   }
   .shell.is-success .form-group{ display:none; }
   .shell.is-success .success{ display:block; }
+  .shell.is-success .back-link{ display:none; }
   .shell.is-entered .success{ opacity:1; transform:translateY(0); filter:blur(0); }
 
   @media (prefers-reduced-motion: reduce){
@@ -300,7 +301,7 @@
 
 <script>
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var LANDING_URL = '1percentofmiracle-landing-v7-final.html';
+  var LANDING_URL = 'index.html';
 
   function startRedirectCountdown(){
     var numEl = document.getElementById('countdown-num');
