@@ -197,8 +197,13 @@
   }
   @media (min-width:701px){
     .hero-bg{
-      object-position: center center;
+      object-position: center 25%;
     }
+  }
+  .hero-fade{
+    position:absolute; left:0; right:0; bottom:0; height:22%;
+    background: linear-gradient(0deg, var(--color-void-black) 0%, rgba(25,25,25,0) 100%);
+    pointer-events:none;
   }
   .hero-grain{
     position:absolute; inset:0;
@@ -613,6 +618,7 @@
   </video>
   <div class="hero-grain"></div>
   <div class="hero-scrim"></div>
+  <div class="hero-fade"></div>
   <div class="wrap hero-inner">
     <h1>Trust-Based<br>Beauty &amp; Wellness<br class="brk-mobile"> <span class="accent">Curation Platform.</span></h1>
     <p class="lede">Outer beauty, inner beauty,<br class="brk-mobile"> and wellness experiences aren't separate.<br>We curate them as one routine,<br class="brk-mobile"> because balance is what makes any of it work.</p>
